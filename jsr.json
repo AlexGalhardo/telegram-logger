@@ -1,0 +1,5 @@
+{
+	"name": "@alexgalhardo/telegram-logger",
+	"version": "0.0.3",
+	"exports": "./mod.ts"
+}
