@@ -13,7 +13,7 @@
 bunx jsr add @alexgalhardo/telegram-logger
 ```
 
-2. Getting `TELEGRAM_BOT_HTTP_TOKEN`:
+2. Getting `TELEGRAM_BOT_HTTP_TOKEN`
    - a. Find BotFather in Telegram to create new bots
    - b. Start a conversation with BotFather typing: `/newbot`
    - c. Create a name and username for your new bot
