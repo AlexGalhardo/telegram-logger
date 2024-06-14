@@ -1,19 +1,19 @@
 {
-  "name": "@alexgalhardo/telegram-logger",
-  "module": "mod.ts",
-  "type": "module",
-  "scripts": {
-    "publish": "npx jsr publish",
-    "format": "prettier --write \"*.ts\""
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "prettier": "^3.3.1"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@types/node": "^20.14.2"
-  }
+	"name": "@alexgalhardo/telegram-logger",
+	"module": "mod.ts",
+	"type": "module",
+	"scripts": {
+		"publish": "npx jsr publish",
+		"format": "prettier --write \"*.ts\""
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"prettier": "^3.3.1"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@types/node": "^20.14.2"
+	}
 }

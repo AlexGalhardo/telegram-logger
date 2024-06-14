@@ -1,5 +1,5 @@
 <div align="center">
-	<h1 align="center">@alexgalhardo/telegram-logger</h1>
+	<h1 align="center"><a href="https://jsr.io/@alexgalhardo/telegram-logger" target="_blank">@alexgalhardo/telegram-logger</a></h1>
 </div>
 
 ## Introduction
@@ -34,3 +34,15 @@ const logger = new TelegramLogger(TELEGRAM_BOT_HTTP_TOKEN, TELEGRAM_BOT_CHANNEL_
 logger.error('Something went wrong');
 logger.info('Some info message');
 ```
+
+## Example
+
+<img width="1013" alt="Screenshot 2024-06-14 at 12 54 18" src="https://github.com/AlexGalhardo/telegram-logger/assets/19540357/e1775fa5-4617-480f-a4df-f4f947c350a5">
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) August 2023-present, [Alex Galhardo](https://github.com/AlexGalhardo)
+
+
