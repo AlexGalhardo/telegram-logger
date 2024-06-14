@@ -14,16 +14,16 @@ bunx jsr add @alexgalhardo/telegram-logger
 ```
 
 2. Getting `TELEGRAM_BOT_HTTP_TOKEN`
-   - a. Find BotFather in Telegram to create new bots
-   - b. Start a conversation with BotFather typing: `/newbot`
-   - c. Create a name and username for your new bot
-   - d. Save the `TELEGRAM_BOT_HTTP_TOKEN` BotFather will answer to you
-   - e. BotFather will also give you the link to start conversation with your new bot: `t.me/YOUR_BOT_NAME`
+   - Find BotFather in Telegram to create new bots
+   - Start a conversation with BotFather typing: `/newbot`
+   - Create a name and username for your new bot
+   - Save the `TELEGRAM_BOT_HTTP_TOKEN` BotFather will answer to you
+   - BotFather will also give you the link to start conversation with your new bot: `t.me/YOUR_BOT_NAME`
 
 3. Getting `TELEGRAM_BOT_CHANNEL_ID`
-   - a. Send a aleatory message to your new bot you created previously
-   - b. Access: `https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_HTTP_TOKEN_HERE>/getUpdates`
-   - c. Copy and save: `chat.id` its a number
+   - Send a aleatory message to your new bot you created previously
+   - Access: `https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_HTTP_TOKEN_HERE>/getUpdates`
+   - Copy and save: `chat.id` its a number
 
 4. Create logger
 ```js
@@ -43,6 +43,6 @@ logger.info('Some info message');
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) August 2023-present, [Alex Galhardo](https://github.com/AlexGalhardo)
+Copyright (c) June 2024-present, [Alex Galhardo](https://github.com/AlexGalhardo)
 
 
