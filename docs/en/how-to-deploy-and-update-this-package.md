@@ -174,10 +174,10 @@ After that:
 
 ### D. Mark the initial version for release-please
 
-release-please needs to know where to start from. For that, the `v0.1.0` release was created pointing at the initial commit:
+release-please needs to know where to start from. For that, the `v1.0.0` release was created pointing at the initial commit:
 
 ```bash
-gh release create v0.1.0 --title "v0.1.0" --notes "Initial release"
+gh release create v1.0.0 --target 4bd546a413ae3d8a172047ff1c32504be8305733 --title "v1.0.0" --notes "$(bun run scripts/changelog.ts 1.0.0 --notes)"
 ```
 
 ---

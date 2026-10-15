@@ -3,6 +3,7 @@
 // never has to be edited by hand. Entries written manually under [Unreleased] are kept and merged.
 //
 // Usage: bun run changelog [version] [--dry-run]   (version defaults to package.json)
+//        bun run changelog [version] --notes       prints that version's section (GitHub Release notes)
 
 import { $ } from "bun";
 
@@ -110,11 +111,28 @@ export function insertRelease(
     return result;
 }
 
+/** Returns the body of a version section (without its heading), or null if the version isn't in the changelog. */
+export function extractSection(changelog: string, version: string): string | null {
+    const heading = `## [${version}]`;
+    const start = changelog.indexOf(heading);
+    if (start === -1) return null;
+    const bodyStart = changelog.indexOf("\n", start) + 1;
+    const next = changelog.slice(bodyStart).search(/^## \[|^\[Unreleased\]:/m);
+    return changelog.slice(bodyStart, next === -1 ? undefined : bodyStart + next).trim();
+}
+
 async function main(): Promise<void> {
     const args = process.argv.slice(2);
     const dryRun = args.includes("--dry-run");
     const pkg = (await Bun.file("package.json").json()) as { version: string };
     const version = args.find((a) => !a.startsWith("--")) ?? pkg.version;
+
+    if (args.includes("--notes")) {
+        const notes = extractSection(await Bun.file("CHANGELOG.md").text(), version);
+        if (notes === null) throw new Error(`CHANGELOG.md has no [${version}] section`);
+        console.log(notes);
+        return;
+    }
 
     const previousTag = (await $`git describe --tags --abbrev=0 --match "v*"`.text()).trim();
     const raw = await $`git log ${previousTag}..HEAD --format=%H%x1f%s%x1f%b%x1e`.text();

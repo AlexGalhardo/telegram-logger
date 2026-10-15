@@ -53,6 +53,22 @@ jobs:
           git commit -am "docs(changelog): update for v$(node -p "require('./package.json').version")"
           git push
 
+      # Replace release-please's generated notes with the Keep a Changelog section of the new version.
+      - uses: actions/checkout@v7
+        if: steps.release.outputs.release_created == 'true'
+        with:
+          ref: ${{ steps.release.outputs.tag_name }}
+      - uses: oven-sh/setup-bun@v2
+        if: steps.release.outputs.release_created == 'true'
+      - name: Use the CHANGELOG.md section as the GitHub Release notes
+        if: steps.release.outputs.release_created == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag_name }}
+        run: |
+          bun run scripts/changelog.ts "${TAG#v}" --notes > "$RUNNER_TEMP/notes.md"
+          gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
+
   publish-npm:
     needs: release-please
     if: always() && (needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch')

@@ -59,7 +59,7 @@ docs/en, docs/pt-br   user guides; keep both languages in sync
   To force a version, add a `Release-As: x.y.z` footer to a commit.
 - Flow (`.github/workflows/release.yml`): push to `main` → release-please opens/updates a release PR (version bump)
   → `scripts/changelog.ts` writes the `CHANGELOG.md` section into that PR → merging it creates the tag and GitHub
-  Release → `publish-npm` and `publish-jsr` jobs publish (OIDC; no tokens).
+  Release (its notes are replaced with that CHANGELOG section) → `publish-npm` and `publish-jsr` jobs publish (OIDC; no tokens).
 - `CHANGELOG.md` follows Keep a Changelog. release-please has `skip-changelog: true`; do not let it write the file.
   Commit types map to sections: `feat` → Added, `fix` → Fixed, `perf`/`refactor` → Changed, `revert` → Removed,
   scope `security` → Security, scope `deprecate` → Deprecated, breaking → Changed (**BREAKING**). Other types are omitted.

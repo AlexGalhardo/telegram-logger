@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Commit, classify, insertRelease } from "../scripts/changelog.ts";
+import { type Commit, classify, extractSection, insertRelease } from "../scripts/changelog.ts";
 
 const commit = (subject: string, body = ""): Commit => ({ hash: "abcdef1234567890", subject, body });
 
@@ -70,5 +70,16 @@ describe("insertRelease", () => {
     test("writes a maintenance note when nothing is user-facing", () => {
         const out = insertRelease(BASE, "1.0.2", "v1.0.1", "2026-11-01", [commit("chore: deps")]);
         expect(out).toContain("## [1.0.2] - 2026-11-01\n\n### Changed\n\n- Internal maintenance only");
+    });
+});
+
+describe("extractSection", () => {
+    test("returns a version body without its heading or link references", () => {
+        const out = insertRelease(BASE, "1.1.0", "v1.0.1", "2026-11-01", [commit("feat: add sendPhoto")]);
+        expect(extractSection(out, "1.1.0")).toBe(
+            "### Added\n\n- Add sendPhoto ([abcdef1](https://github.com/AlexGalhardo/telegram-logger/commit/abcdef1234567890))",
+        );
+        expect(extractSection(out, "1.0.1")).toBe("### Added\n\n- Something.");
+        expect(extractSection(out, "9.9.9")).toBeNull();
     });
 });
