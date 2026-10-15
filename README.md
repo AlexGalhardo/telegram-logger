@@ -29,13 +29,40 @@ at POST (app/api/checkout/route.ts:12:20)
 
 ## Install
 
+**npm**
+
 ```bash
-npm install @galhardoalex/telegram-logger      # npm
-pnpm add @galhardoalex/telegram-logger         # pnpm
-yarn add @galhardoalex/telegram-logger         # yarn
-bun add @galhardoalex/telegram-logger          # bun
-deno add jsr:@galhardoalex/telegram-logger     # deno
-npx jsr add @galhardoalex/telegram-logger      # from JSR, with any package manager
+npm install @galhardoalex/telegram-logger
+```
+
+**pnpm**
+
+```bash
+pnpm add @galhardoalex/telegram-logger
+```
+
+**yarn**
+
+```bash
+yarn add @galhardoalex/telegram-logger
+```
+
+**bun**
+
+```bash
+bun add @galhardoalex/telegram-logger
+```
+
+**deno**
+
+```bash
+deno add jsr:@galhardoalex/telegram-logger
+```
+
+**From JSR, with any package manager**
+
+```bash
+npx jsr add @galhardoalex/telegram-logger
 ```
 
 ## Get a bot token and a chat id
