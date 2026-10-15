@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run typecheck
+      - run: bun test
+      - run: bun run build
+      - name: Validate npm package (publint + are-the-types-wrong)
+        run: bun run check:package
+      - name: Validate JSR package (slow types, files)
+        run: bunx jsr publish --dry-run
+      - uses: actions/upload-artifact@v5
+        with:
+          name: dist
+          path: dist
+
+  node-compat:
+    name: Smoke test on Node ${{ matrix.node }}
+    needs: check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22, 24]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          name: dist
+          path: dist
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node scripts/smoke.mjs
+      - run: node scripts/smoke.cjs
+
+  deno-compat:
+    name: Smoke test on Deno
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno check src/mod.ts
+      - run: deno run scripts/smoke.deno.ts

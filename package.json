@@ -1,0 +1,75 @@
+{
+  "name": "@alexgalhardo/telegram-logger",
+  "version": "0.1.0",
+  "description": "Zero-dependency logger that sends errors, warnings, events and contact-form submissions to your Telegram chats. Works on Node, Bun, Deno, Next.js and edge runtimes.",
+  "keywords": [
+    "telegram",
+    "logger",
+    "telegram-bot",
+    "notifications",
+    "alerts",
+    "error-reporting",
+    "contact-form",
+    "nextjs",
+    "edge",
+    "typescript"
+  ],
+  "author": "Alex Galhardo <aleexgvieira@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/AlexGalhardo/telegram-logger#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexGalhardo/telegram-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexGalhardo/telegram-logger/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/mod.cjs",
+  "module": "./dist/mod.js",
+  "types": "./dist/mod.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/mod.d.ts",
+        "default": "./dist/mod.js"
+      },
+      "require": {
+        "types": "./dist/mod.d.cts",
+        "default": "./dist/mod.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "test": "bun test",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "check:package": "publint --strict && attw --pack . --profile node16",
+    "check:jsr": "bunx jsr publish --dry-run --allow-dirty",
+    "check": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:package",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.5.15",
+    "@types/bun": "latest",
+    "publint": "^0.3.25",
+    "typescript": "^7.0.2"
+  }
+}

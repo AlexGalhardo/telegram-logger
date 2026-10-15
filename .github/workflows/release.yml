@@ -1,0 +1,77 @@
+name: Release
+
+# 1. On every push to main, release-please opens/updates a "chore(main): release x.y.z" PR
+#    with the version bump (package.json + jsr.json) and the CHANGELOG.
+# 2. Merging that PR creates the git tag + GitHub Release, and the publish job below
+#    publishes the new version to npm and JSR.
+# 3. "Run workflow" (workflow_dispatch) re-publishes the current version; versions that
+#    already exist on a registry are skipped, so it is safe to re-run.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: release-please
+    if: always() && (needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC: npm Trusted Publishing + provenance, and JSR publishing
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name || github.ref }}
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Use an npm version with Trusted Publishing support
+        run: npm install -g npm@latest
+      - run: bun install --frozen-lockfile
+      - run: bun test
+      - run: bun run build
+
+      - name: Read package name and version
+        id: pkg
+        run: |
+          echo "name=$(node -p "require('./package.json').name")" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to npm
+        run: |
+          if npm view "${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" version >/dev/null 2>&1; then
+            echo "npm: ${{ steps.pkg.outputs.version }} already published, skipping"
+          else
+            npm publish --access public --provenance
+          fi
+
+      - name: Publish to JSR
+        run: |
+          if curl -fsS "https://jsr.io/${{ steps.pkg.outputs.name }}/meta.json" | grep -q "\"${{ steps.pkg.outputs.version }}\""; then
+            echo "jsr: ${{ steps.pkg.outputs.version }} already published, skipping"
+          else
+            npx -y jsr publish
+          fi
