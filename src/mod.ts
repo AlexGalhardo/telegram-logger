@@ -6,7 +6,7 @@
  *
  * @example
  * ```ts
- * import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+ * import { createTelegramLogger } from "@galhardoalex/telegram-logger";
  *
  * const logger = createTelegramLogger({
  *   botToken: process.env.TELEGRAM_BOT_TOKEN,

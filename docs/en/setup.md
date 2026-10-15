@@ -2,7 +2,7 @@
 
 > 🇧🇷 [Leia em português](../pt-br/setup.md)
 
-This guide shows, step by step, how to put `@alexgalhardo/telegram-logger` to work in real projects:
+This guide shows, step by step, how to put `@galhardoalex/telegram-logger` to work in real projects:
 
 - contact forms
 - 500 errors
@@ -59,9 +59,9 @@ This guide shows, step by step, how to put `@alexgalhardo/telegram-logger` to wo
 ## 2. Install
 
 ```bash
-npm install @alexgalhardo/telegram-logger
-# or: pnpm add / yarn add / bun add @alexgalhardo/telegram-logger
-# Deno: deno add jsr:@alexgalhardo/telegram-logger
+npm install @galhardoalex/telegram-logger
+# or: pnpm add / yarn add / bun add @galhardoalex/telegram-logger
+# Deno: deno add jsr:@galhardoalex/telegram-logger
 ```
 
 ## 3. Environment variables
@@ -85,7 +85,7 @@ Create the instance **once** and import it wherever you need it:
 ```ts
 // lib/logger.ts
 import "server-only"; // Next.js: fails the build if this file is imported on the client
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 export const logger = createTelegramLogger({
   // botToken and chatId are read automatically from TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID
@@ -306,7 +306,7 @@ Example with a Vercel Function in a Vite project:
 
 ```ts
 // api/contact.ts (Vercel picks it up automatically)
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 const logger = createTelegramLogger({ appName: "landing-vite" });
 
@@ -336,7 +336,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 
 ```ts
 import express from "express";
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 const logger = createTelegramLogger({ appName: "api", environment: process.env.NODE_ENV });
 const app = express();
@@ -382,7 +382,7 @@ fastify.setErrorHandler(async (error, request, reply) => {
 
 ```ts
 import { Hono } from "hono";
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 const app = new Hono();
 const logger = createTelegramLogger({ appName: "hono-api" });
@@ -403,7 +403,7 @@ app.notFound((c) => {
 In Workers, environment variables arrive in `env`, not in `process.env`. Pass the token and chat id explicitly, and use `ctx.waitUntil` to send without delaying the response:
 
 ```ts
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
@@ -429,15 +429,15 @@ To store the token as a secret: `wrangler secret put TELEGRAM_BOT_TOKEN`.
 ## 9. Deno and Bun
 
 ```ts
-// Deno: deno add jsr:@alexgalhardo/telegram-logger
+// Deno: deno add jsr:@galhardoalex/telegram-logger
 // Run with: deno run --allow-net --allow-env main.ts
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 const logger = createTelegramLogger({ appName: "deno-app" });
 await logger.info("Hello from Deno 🦕");
 ```
 
-Bun works exactly like Node: `bun add @alexgalhardo/telegram-logger`. The `.env` file is loaded automatically.
+Bun works exactly like Node: `bun add @galhardoalex/telegram-logger`. The `.env` file is loaded automatically.
 
 ## 10. Scripts, cron jobs and queues
 

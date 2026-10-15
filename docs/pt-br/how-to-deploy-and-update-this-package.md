@@ -65,11 +65,11 @@ Quando quiser lançar, clique em **Merge**. Em 1 a 2 minutos a nova versão est�
 ### 4. Confira
 
 ```bash
-npm view @alexgalhardo/telegram-logger version
+npm view @galhardoalex/telegram-logger version
 ```
 
-- npm: https://www.npmjs.com/package/@alexgalhardo/telegram-logger (deve mostrar o selo "Provenance")
-- JSR: https://jsr.io/@alexgalhardo/telegram-logger (confira também a aba **Score**)
+- npm: https://www.npmjs.com/package/@galhardoalex/telegram-logger (deve mostrar o selo "Provenance")
+- JSR: https://jsr.io/@galhardoalex/telegram-logger (confira também a aba **Score**)
 
 ---
 
@@ -104,7 +104,7 @@ npm pack --dry-run  # lista exatamente os arquivos que vão para o npm
 
 ### Descontinuar uma versão com bug
 
-- **npm:** `npm deprecate @alexgalhardo/telegram-logger@0.3.0 "Bug X, use 0.3.1"`.
+- **npm:** `npm deprecate @galhardoalex/telegram-logger@0.3.0 "Bug X, use 0.3.1"`.
   O `npm unpublish` só é permitido nas primeiras 72h e deve ser evitado.
 - **JSR:** acesse jsr.io → pacote → **Versions** → **Yank** na versão.
 
@@ -133,12 +133,11 @@ Já foi feito na criação do projeto. Fica registrado aqui caso você precise r
 ### B. JSR
 
 1. Acesse https://jsr.io e faça login com o GitHub.
-2. Em https://jsr.io/new, crie o escopo `@alexgalhardo` e o pacote `telegram-logger`.
+2. Em https://jsr.io/new, crie o escopo `@galhardoalex` e o pacote `telegram-logger`.
 3. No pacote, vá em **Settings → GitHub Repository** e vincule `AlexGalhardo/telegram-logger`. É isso que autoriza o GitHub Actions a publicar via OIDC, sem token.
 4. Ainda em **Settings**, preencha a descrição e marque os runtimes compatíveis: Node.js, Deno, Bun, Cloudflare Workers e Browsers. Isso conta pontos no JSR Score.
 5. **Se o pacote já existia e está arquivado**, desarquive em **Settings → Archive → Unarchive package**. O JSR recusa publicação em pacote arquivado.
-   - Foi o caso deste projeto: as versões antigas, `0.0.1` a `0.0.5` (de 2024), estão todas *yanked*.
-   - Versões *yanked* continuam reservadas, então não dá para publicar de novo um número que já foi usado. A numeração nova começa em `0.1.0`.
+   - Versões *yanked* continuam reservadas: um número de versão já usado nunca pode ser publicado de novo.
 6. A página do pacote mostra duas formas de publicar:
    - **Pelo CI (usada aqui):** o `release.yml` já tem `permissions: id-token: write` e roda `npx jsr publish`. Não precisa de nenhum segredo, porque o repo está vinculado.
    - **Pela CLI, da sua máquina:** rode `npx jsr publish` (ou `deno publish`) na raiz do projeto. O navegador abre para você autorizar. É útil para emergências.
@@ -147,6 +146,8 @@ Já foi feito na criação do projeto. Fica registrado aqui caso você precise r
 > Os jobs `publish-npm` e `publish-jsr` são independentes: se um registry falhar, o outro publica mesmo assim. Corrija o problema e rode **Run workflow** de novo. A versão que já foi publicada é pulada.
 
 ### C. npm
+
+O escopo `@galhardoalex` precisa ser o seu username (ou uma org) no npmjs.com: confira com `npm whoami`.
 
 O Trusted Publishing só pode ser configurado em um pacote que já existe. Por isso, a **primeira** versão foi publicada manualmente:
 
@@ -158,7 +159,7 @@ npm publish --access public --provenance=false   # provenance só funciona dentr
 
 Depois disso:
 
-1. Acesse https://www.npmjs.com/package/@alexgalhardo/telegram-logger/access, ou **Settings** do pacote.
+1. Acesse https://www.npmjs.com/package/@galhardoalex/telegram-logger/access, ou **Settings** do pacote.
 2. Em **Trusted Publisher**, escolha **GitHub Actions** e preencha:
    - Organization or user: `AlexGalhardo`
    - Repository: `telegram-logger`

@@ -6,7 +6,7 @@
   "bump-patch-for-minor-pre-major": false,
   "packages": {
     ".": {
-      "package-name": "@alexgalhardo/telegram-logger",
+      "package-name": "@galhardoalex/telegram-logger",
       "changelog-path": "CHANGELOG.md",
       "extra-files": [{ "type": "json", "path": "jsr.json", "jsonpath": "$.version" }]
     }

@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Only the latest released version of `@alexgalhardo/telegram-logger` receives security fixes.
+Only the latest released version of `@galhardoalex/telegram-logger` receives security fixes.
 
 | Version | Supported |
 | ------- | --------- |

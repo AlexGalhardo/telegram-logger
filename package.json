@@ -1,5 +1,5 @@
 {
-  "name": "@alexgalhardo/telegram-logger",
+  "name": "@galhardoalex/telegram-logger",
   "version": "0.1.0",
   "description": "Zero-dependency logger that sends errors, warnings, events and contact-form submissions to your Telegram chats. Works on Node, Bun, Deno, Next.js and edge runtimes.",
   "keywords": [

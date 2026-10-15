@@ -1,8 +1,8 @@
 # telegram-logger
 
-[![JSR](https://jsr.io/badges/@alexgalhardo/telegram-logger)](https://jsr.io/@alexgalhardo/telegram-logger)
-[![JSR Score](https://jsr.io/badges/@alexgalhardo/telegram-logger/score)](https://jsr.io/@alexgalhardo/telegram-logger)
-[![npm](https://img.shields.io/npm/v/@alexgalhardo/telegram-logger)](https://www.npmjs.com/package/@alexgalhardo/telegram-logger)
+[![JSR](https://jsr.io/badges/@galhardoalex/telegram-logger)](https://jsr.io/@galhardoalex/telegram-logger)
+[![JSR Score](https://jsr.io/badges/@galhardoalex/telegram-logger/score)](https://jsr.io/@galhardoalex/telegram-logger)
+[![npm](https://img.shields.io/npm/v/@galhardoalex/telegram-logger)](https://www.npmjs.com/package/@galhardoalex/telegram-logger)
 [![CI](https://github.com/AlexGalhardo/telegram-logger/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexGalhardo/telegram-logger/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -30,12 +30,12 @@ at POST (app/api/checkout/route.ts:12:20)
 ## Install
 
 ```bash
-npm install @alexgalhardo/telegram-logger      # npm
-pnpm add @alexgalhardo/telegram-logger         # pnpm
-yarn add @alexgalhardo/telegram-logger         # yarn
-bun add @alexgalhardo/telegram-logger          # bun
-deno add jsr:@alexgalhardo/telegram-logger     # deno
-npx jsr add @alexgalhardo/telegram-logger      # from JSR, with any package manager
+npm install @galhardoalex/telegram-logger      # npm
+pnpm add @galhardoalex/telegram-logger         # pnpm
+yarn add @galhardoalex/telegram-logger         # yarn
+bun add @galhardoalex/telegram-logger          # bun
+deno add jsr:@galhardoalex/telegram-logger     # deno
+npx jsr add @galhardoalex/telegram-logger      # from JSR, with any package manager
 ```
 
 ## Get a bot token and a chat id
@@ -56,7 +56,7 @@ TELEGRAM_CHAT_ID=-1001234567890
 ## Usage
 
 ```ts
-import { createTelegramLogger } from "@alexgalhardo/telegram-logger";
+import { createTelegramLogger } from "@galhardoalex/telegram-logger";
 
 export const logger = createTelegramLogger({
   botToken: process.env.TELEGRAM_BOT_TOKEN, // optional: falls back to TELEGRAM_BOT_TOKEN
