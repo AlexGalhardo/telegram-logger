@@ -24,7 +24,7 @@ jobs:
         run: bun run check:package
       - name: Validate JSR package (slow types, files)
         run: bunx jsr publish --dry-run
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
