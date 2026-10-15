@@ -1,5 +1,7 @@
 # Como publicar e atualizar este pacote (npm + JSR)
 
+> 🇺🇸 [Read in English](../en/how-to-deploy-and-update-this-package.md)
+
 O pacote é publicado em dois registries a partir do mesmo código:
 
 | Registry | O que é publicado                                    | Como autentica                            |

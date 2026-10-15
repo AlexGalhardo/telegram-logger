@@ -70,6 +70,6 @@ When you open a pull request, use the same format for its title. PRs are squash-
 - [ ] README updated, if the public API changed
 - [ ] PR title follows Conventional Commits
 
-Releases are automated, so do not bump versions yourself. See [docs/how-to-deploy-and-update-this-package.md](docs/how-to-deploy-and-update-this-package.md).
+Releases are automated, so do not bump versions yourself. See [docs/en/how-to-deploy-and-update-this-package.md](docs/en/how-to-deploy-and-update-this-package.md) ([pt-br](docs/pt-br/how-to-deploy-and-update-this-package.md)).
 
 By contributing, you agree that your contributions are licensed under the [MIT License](LICENSE).

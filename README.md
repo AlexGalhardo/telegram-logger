@@ -156,7 +156,12 @@ The formatters are exported too (`formatLog`, `formatContact`, `escapeHtml`), in
 - **Only important stuff:** `minLevel: "warn"`.
 - **Custom title:** `logger.error(err, meta, { title: "💳 Checkout failed" })`.
 
-A complete guide for Next.js, React, Express, Hono and other stacks lives in [`docs/setup.md`](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/setup.md).
+## Documentation
+
+| Guide                                                        | 🇺🇸 English                                                                                                                 | 🇧🇷 Português                                                                                                                  |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Usage guide**: Next.js, React, Express, Hono, Workers, Deno... | [docs/en/setup.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/en/setup.md)                           | [docs/pt-br/setup.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/pt-br/setup.md)                           |
+| **Releasing**: publishing and updating on npm and JSR        | [docs/en/how-to-deploy-and-update-this-package.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/en/how-to-deploy-and-update-this-package.md) | [docs/pt-br/how-to-deploy-and-update-this-package.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/pt-br/how-to-deploy-and-update-this-package.md) |
 
 ## Contributing
 
@@ -165,7 +170,7 @@ bun install
 bun run check   # lint + typecheck + tests + build + package validation
 ```
 
-See [CONTRIBUTING.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/CONTRIBUTING.md). Releases are automated, see [`docs/how-to-deploy-and-update-this-package.md`](https://github.com/AlexGalhardo/telegram-logger/blob/main/docs/how-to-deploy-and-update-this-package.md). Security issues: [SECURITY.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/SECURITY.md).
+See [CONTRIBUTING.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/CONTRIBUTING.md). To report a vulnerability, see [SECURITY.md](https://github.com/AlexGalhardo/telegram-logger/blob/main/SECURITY.md).
 
 ## License
 

@@ -1,5 +1,7 @@
 # Guia de uso: telegram-logger em projetos web full stack JS/TS
 
+> 🇺🇸 [Read in English](../en/setup.md)
+
 Este guia mostra, passo a passo, como colocar o `@alexgalhardo/telegram-logger` para trabalhar em projetos reais:
 
 - formulários de contato
