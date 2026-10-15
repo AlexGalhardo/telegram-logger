@@ -38,7 +38,7 @@ jobs:
         node: [18, 20, 22, 24]
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
