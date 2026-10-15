@@ -18,6 +18,16 @@ cd telegram-logger
 bun install
 ```
 
+`bun install` also installs the git hooks (Husky):
+
+| Hook         | Runs                                                       |
+| ------------ | ---------------------------------------------------------- |
+| `pre-commit` | `bun run lint` and `bun run typecheck`                     |
+| `commit-msg` | commitlint (Conventional Commits)                          |
+| `pre-push`   | `bun test`, `bun run build` and `bun run check:package`    |
+
+Indentation is 4 spaces (2 for YAML), defined in `.editorconfig` and enforced by Biome.
+
 | Command             | What it does                                               |
 | ------------------- | ---------------------------------------------------------- |
 | `bun test`          | Run the unit tests                                         |
@@ -52,7 +62,7 @@ scripts/       build script and runtime smoke tests
 
 ## Commit messages
 
-This repo uses [Conventional Commits](https://www.conventionalcommits.org). Versions and the changelog are generated from them:
+This repo uses [Conventional Commits](https://www.conventionalcommits.org). Versions follow [Semantic Versioning](https://semver.org) and are calculated from them. The `commit-msg` hook rejects messages that don't follow the format:
 
 ```
 fix: escape ampersands in meta keys        → patch release
@@ -60,6 +70,8 @@ feat: add sendPhoto method                 → minor release
 feat!: rename chatIds option to routes     → breaking change
 docs: / test: / chore: / refactor: / ci:   → no release
 ```
+
+`CHANGELOG.md` ([Keep a Changelog](https://keepachangelog.com)) is generated from these messages when a release is prepared, so write the subject as a user-facing sentence. Optional extra notes can go under `## [Unreleased]`.
 
 When you open a pull request, use the same format for its title. PRs are squash-merged, so the title becomes the commit message.
 

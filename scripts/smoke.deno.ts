@@ -2,9 +2,9 @@
 import { createTelegramLogger } from "../src/mod.ts";
 
 const logger = createTelegramLogger({
-  botToken: "test",
-  chatId: 1,
-  fetch: () => Promise.resolve(new Response(JSON.stringify({ ok: true, result: { message_id: 7 } }))),
+    botToken: "test",
+    chatId: 1,
+    fetch: () => Promise.resolve(new Response(JSON.stringify({ ok: true, result: { message_id: 7 } }))),
 });
 const result = await logger.success("deploy finished");
 if (!result.ok || result.messageId !== 7) throw new Error(`unexpected result: ${JSON.stringify(result)}`);

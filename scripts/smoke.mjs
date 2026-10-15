@@ -4,12 +4,12 @@ import { createTelegramLogger, formatLog } from "../dist/mod.js";
 
 const calls = [];
 const logger = createTelegramLogger({
-  botToken: "test",
-  chatId: 1,
-  fetch: async (url, init) => {
-    calls.push({ url, body: JSON.parse(init.body) });
-    return new Response(JSON.stringify({ ok: true, result: { message_id: 1 } }));
-  },
+    botToken: "test",
+    chatId: 1,
+    fetch: async (url, init) => {
+        calls.push({ url, body: JSON.parse(init.body) });
+        return new Response(JSON.stringify({ ok: true, result: { message_id: 1 } }));
+    },
 });
 assert.deepEqual(await logger.error(new Error("boom")), { ok: true, messageId: 1 });
 assert.match(calls[0].body.text, /🔴 <b>ERROR<\/b>/);

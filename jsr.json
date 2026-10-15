@@ -1,20 +1,20 @@
 {
-  "$schema": "https://jsr.io/schema/config-file.v1.json",
-  "name": "@galhardoalex/telegram-logger",
-  "version": "0.1.1",
-  "license": "MIT",
-  "exports": "./src/mod.ts",
-  "publish": {
-    "include": [
-      "src/**/*.ts",
-      "README.md",
-      "LICENSE",
-      "jsr.json"
-    ],
-    "exclude": [
-      "tests",
-      "scripts",
-      "docs"
-    ]
-  }
+    "$schema": "https://jsr.io/schema/config-file.v1.json",
+    "name": "@galhardoalex/telegram-logger",
+    "version": "1.0.1",
+    "license": "MIT",
+    "exports": "./src/mod.ts",
+    "publish": {
+        "include": [
+            "src/**/*.ts",
+            "README.md",
+            "LICENSE",
+            "jsr.json"
+        ],
+        "exclude": [
+            "tests",
+            "scripts",
+            "docs"
+        ]
+    }
 }

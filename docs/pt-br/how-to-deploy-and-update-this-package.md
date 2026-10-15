@@ -20,7 +20,7 @@ você faz commits (feat:, fix:...) → push na main
         │
         ▼
 GitHub Action "Release" abre/atualiza um PR "chore(main): release 0.2.0"
-(bump de versão no package.json + jsr.json e CHANGELOG.md gerado)
+(bump de versão no package.json + jsr.json; um passo seguinte escreve a seção do CHANGELOG.md)
         │
         ▼  você revisa e faz merge desse PR
         │
@@ -42,7 +42,9 @@ Você **não** altera a versão manualmente. Ela é calculada a partir das mensa
 | `feat!: ...` ou rodapé `BREAKING CHANGE:` | `feat!: rename chatIds to routes`        | minor `0.1.0 → 0.2.0` | **major** `1.2.0 → 2.0.0` |
 | `docs:`, `chore:`, `test:`, `refactor:`, `ci:` | `docs: improve Next.js example`      | não gera release  | não gera release  |
 
-Os commits que geram release aparecem no CHANGELOG. Se um commit ficar fora do padrão, ele é ignorado. Nada quebra.
+O projeto já passou da 1.0, então vale a coluna "Depois da 1.0". Um hook local `commit-msg` (commitlint) rejeita mensagens fora do padrão.
+
+O `CHANGELOG.md` segue o [Keep a Changelog](https://keepachangelog.com) e é gerado automaticamente: o `scripts/changelog.ts` roda no PR de release e mapeia `feat` → Added, `fix` → Fixed, `perf`/`refactor` → Changed, `revert` → Removed, escopo `security` → Security, escopo `deprecate` → Deprecated, e breaking changes → Changed com prefixo **BREAKING**. Commits `docs`, `chore`, `test`, `ci`, `build` e `style` ficam de fora. Notas que você escrever à mão em `## [Unreleased]` entram junto na release. Para pré-visualizar: `bun run changelog 1.2.0 --dry-run`.
 
 ### 2. Faça push na `main`
 
@@ -186,8 +188,8 @@ gh release create v0.1.0 --title "v0.1.0" --notes "Initial release"
 | --------------------------------------- | ------------------------------------------------------------------- |
 | `.github/workflows/ci.yml`              | Lint, typecheck, testes, build, validação npm/JSR, smoke tests em Node 18–24 e Deno |
 | `.github/workflows/release.yml`         | release-please + jobs independentes `publish-npm` e `publish-jsr`   |
-| `release-please-config.json`            | Tipo de release (node), bump de `jsr.json`, regras pré-1.0          |
+| `release-please-config.json`            | Tipo de release (node), bump de `jsr.json`, `skip-changelog`        |
 | `.release-please-manifest.json`         | Última versão lançada. É atualizado pelo release-please; não edite. |
 | `package.json` / `jsr.json`             | Versão (sempre iguais; o release-please atualiza os dois)           |
-| `CHANGELOG.md`                          | Gerado automaticamente                                              |
+| `CHANGELOG.md`                          | Keep a Changelog; gerado pelo `scripts/changelog.ts` no PR de release |
 | `scripts/build.ts`                      | Build do npm: ESM, CJS, `.d.ts` e `.d.cts`                          |
