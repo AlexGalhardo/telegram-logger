@@ -165,6 +165,9 @@ Depois disso:
    - Repository: `telegram-logger`
    - Workflow filename: `release.yml`
    - Environment: deixe vazio
+   - Permissions: marque **npm publish**. Só "npm stage publish" não basta, porque o workflow roda `npm publish` direto. Com apenas *stage*, cada versão ficaria em espera até alguém aprovar com 2FA (`npm stage approve`).
+
+   O status fica *Pending validation* até a primeira publicação feita pelo CI, que precisa acontecer dentro do prazo mostrado (48h). Se o prazo vencer, apague e recrie o Trusted Publisher.
 3. Recomendado: em **Publishing access**, marque *"Require two-factor authentication and disallow tokens"*. A partir daí, só o CI consegue publicar.
 
 ### D. Marcar a versão inicial para o release-please
