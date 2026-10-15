@@ -40,7 +40,7 @@ jobs:
       contents: read
       id-token: write # OIDC: npm Trusted Publishing + provenance, and JSR publishing
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ needs.release-please.outputs.tag_name || github.ref }}
       - uses: oven-sh/setup-bun@v2
