@@ -28,7 +28,7 @@ the "Release" GitHub Action opens/updates a "chore(main): release 0.2.0" PR
 release-please creates the v0.2.0 tag + GitHub Release
         │
         ▼
-"publish" job: tests, builds, and publishes to npm (with provenance) and JSR
+"publish-npm" and "publish-jsr" jobs (in parallel): test, build and publish
 ```
 
 You **don't** change the version by hand. It is calculated from the commit messages.
@@ -136,6 +136,15 @@ This was already done when the project was created. It's recorded here in case y
 2. At https://jsr.io/new, create the `@alexgalhardo` scope and the `telegram-logger` package.
 3. In the package, go to **Settings → GitHub Repository** and link `AlexGalhardo/telegram-logger`. This is what lets GitHub Actions publish via OIDC, without a token.
 4. Still in **Settings**, fill in the description and check the compatible runtimes: Node.js, Deno, Bun, Cloudflare Workers and Browsers. This adds points to the JSR Score.
+5. **If the package already existed and is archived**, unarchive it in **Settings → Archive → Unarchive package**. JSR refuses to publish to an archived package.
+   - That was the case for this project: the old versions, `0.0.1` to `0.0.5` (from 2024), are all *yanked*.
+   - Yanked versions stay reserved, so a number that was already used can't be published again. The new numbering starts at `0.1.0`.
+6. The package page shows two ways to publish:
+   - **From CI (used here):** `release.yml` already has `permissions: id-token: write` and runs `npx jsr publish`. No secret is needed, because the repo is linked.
+   - **From the CLI, on your machine:** run `npx jsr publish` (or `deno publish`) at the project root. Your browser opens so you can authorize it. Useful for emergencies.
+7. For the **first** publish, go to **Actions → Release → Run workflow**. The `publish-jsr` job publishes the version in `jsr.json`.
+
+> The `publish-npm` and `publish-jsr` jobs are independent: if one registry fails, the other still publishes. Fix the problem and click **Run workflow** again. The version that was already published is skipped.
 
 ### C. npm
 
@@ -172,7 +181,7 @@ gh release create v0.1.0 --title "v0.1.0" --notes "Initial release"
 | File                                    | Purpose                                                              |
 | --------------------------------------- | -------------------------------------------------------------------- |
 | `.github/workflows/ci.yml`              | Lint, typecheck, tests, build, npm/JSR validation, smoke tests on Node 18–24 and Deno |
-| `.github/workflows/release.yml`         | release-please + npm/JSR publishing                                  |
+| `.github/workflows/release.yml`         | release-please + independent `publish-npm` and `publish-jsr` jobs    |
 | `release-please-config.json`            | Release type (node), `jsr.json` bump, pre-1.0 rules                  |
 | `.release-please-manifest.json`         | Last released version. Updated by release-please; don't edit it.     |
 | `package.json` / `jsr.json`             | Version (always the same; release-please updates both)               |

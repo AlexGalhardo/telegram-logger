@@ -28,7 +28,7 @@ GitHub Action "Release" abre/atualiza um PR "chore(main): release 0.2.0"
 release-please cria a tag v0.2.0 + GitHub Release
         │
         ▼
-job "publish": testa, builda e publica no npm (com provenance) e no JSR
+jobs "publish-npm" e "publish-jsr" (em paralelo): testam, buildam e publicam
 ```
 
 Você **não** altera a versão manualmente. Ela é calculada a partir das mensagens de commit.
@@ -136,6 +136,15 @@ Já foi feito na criação do projeto. Fica registrado aqui caso você precise r
 2. Em https://jsr.io/new, crie o escopo `@alexgalhardo` e o pacote `telegram-logger`.
 3. No pacote, vá em **Settings → GitHub Repository** e vincule `AlexGalhardo/telegram-logger`. É isso que autoriza o GitHub Actions a publicar via OIDC, sem token.
 4. Ainda em **Settings**, preencha a descrição e marque os runtimes compatíveis: Node.js, Deno, Bun, Cloudflare Workers e Browsers. Isso conta pontos no JSR Score.
+5. **Se o pacote já existia e está arquivado**, desarquive em **Settings → Archive → Unarchive package**. O JSR recusa publicação em pacote arquivado.
+   - Foi o caso deste projeto: as versões antigas, `0.0.1` a `0.0.5` (de 2024), estão todas *yanked*.
+   - Versões *yanked* continuam reservadas, então não dá para publicar de novo um número que já foi usado. A numeração nova começa em `0.1.0`.
+6. A página do pacote mostra duas formas de publicar:
+   - **Pelo CI (usada aqui):** o `release.yml` já tem `permissions: id-token: write` e roda `npx jsr publish`. Não precisa de nenhum segredo, porque o repo está vinculado.
+   - **Pela CLI, da sua máquina:** rode `npx jsr publish` (ou `deno publish`) na raiz do projeto. O navegador abre para você autorizar. É útil para emergências.
+7. Para a **primeira** publicação, vá em **Actions → Release → Run workflow**. O job `publish-jsr` publica a versão que está no `jsr.json`.
+
+> Os jobs `publish-npm` e `publish-jsr` são independentes: se um registry falhar, o outro publica mesmo assim. Corrija o problema e rode **Run workflow** de novo. A versão que já foi publicada é pulada.
 
 ### C. npm
 
@@ -172,7 +181,7 @@ gh release create v0.1.0 --title "v0.1.0" --notes "Initial release"
 | Arquivo                                 | Função                                                              |
 | --------------------------------------- | ------------------------------------------------------------------- |
 | `.github/workflows/ci.yml`              | Lint, typecheck, testes, build, validação npm/JSR, smoke tests em Node 18–24 e Deno |
-| `.github/workflows/release.yml`         | release-please + publicação npm/JSR                                 |
+| `.github/workflows/release.yml`         | release-please + jobs independentes `publish-npm` e `publish-jsr`   |
 | `release-please-config.json`            | Tipo de release (node), bump de `jsr.json`, regras pré-1.0          |
 | `.release-please-manifest.json`         | Última versão lançada. É atualizado pelo release-please; não edite. |
 | `package.json` / `jsr.json`             | Versão (sempre iguais; o release-please atualiza os dois)           |
