@@ -70,12 +70,11 @@ npx jsr add @galhardoalex/telegram-logger
 1. Open [@BotFather](https://t.me/BotFather), send `/newbot`, and copy the **token**.
 2. Add the bot to your channel or group. In a channel, make it an **admin** so it can post.
 3. Send any message in that chat, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `chat.id`.
-   Channel and supergroup ids start with `-100`.
 4. Put both values in your environment:
 
 ```bash
 TELEGRAM_BOT_TOKEN=123456789:AAH...
-TELEGRAM_CHAT_ID=-1001234567890
+TELEGRAM_CHAT_ID=1477312914
 ```
 
 > ⚠️ Keep the token on the **server**. Never expose it to the browser (no `NEXT_PUBLIC_` prefix).
@@ -122,11 +121,11 @@ await logger.contact({
 
 ```ts
 const logger = createTelegramLogger({
-  chatId: "-100111", // default chat
+  chatId: "100111", // default chat
   chatIds: {
-    error: "-100222", // errors and fatals go to #alerts
-    fatal: "-100222",
-    contact: "-100333", // leads go to #leads
+    error: "100222", // errors and fatals go to #alerts
+    fatal: "100222",
+    contact: "100333", // leads go to #leads
   },
 });
 

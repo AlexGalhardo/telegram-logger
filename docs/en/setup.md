@@ -41,7 +41,7 @@ This guide shows, step by step, how to put `@galhardoalex/telegram-logger` to wo
    - **Group:** just add the bot as a member.
 6. Send any message in the channel and open this in your browser:
 
-   ```
+   ```text
    https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates
    ```
 

@@ -31,7 +31,8 @@ Indentation is 4 spaces (2 for YAML), defined in `.editorconfig` and enforced by
 | Command             | What it does                                               |
 | ------------------- | ---------------------------------------------------------- |
 | `bun test`          | Run the unit tests                                         |
-| `bun run lint`      | Lint and format check (Biome)                              |
+| `bun run lint`      | Lint and format check (Biome + markdownlint)               |
+| `bun run lint:md`   | Lint Markdown only (markdownlint-cli2)                     |
 | `bun run format`    | Auto-fix lint and formatting                               |
 | `bun run typecheck` | TypeScript type check                                      |
 | `bun run build`     | Build `dist/` for npm (ESM, CJS and type declarations)     |
@@ -40,7 +41,7 @@ Indentation is 4 spaces (2 for YAML), defined in `.editorconfig` and enforced by
 
 ## Project layout
 
-```
+```text
 src/
   mod.ts       public entry point (the only file exports go through)
   logger.ts    createTelegramLogger: config, routing, HTTP, retries
@@ -64,7 +65,7 @@ scripts/       build script and runtime smoke tests
 
 This repo uses [Conventional Commits](https://www.conventionalcommits.org). Versions follow [Semantic Versioning](https://semver.org) and are calculated from them. The `commit-msg` hook rejects messages that don't follow the format:
 
-```
+```text
 fix: escape ampersands in meta keys        → patch release
 feat: add sendPhoto method                 → minor release
 feat!: rename chatIds option to routes     → breaking change

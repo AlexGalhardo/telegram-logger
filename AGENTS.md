@@ -10,7 +10,7 @@ contact-form submissions to Telegram chats via the Bot API. Published to **npm**
 
 ## Layout
 
-```
+```text
 src/mod.ts        public entry point; every export goes through here
 src/logger.ts     createTelegramLogger: config, routing, HTTP, retries
 src/format.ts     message formatting (escapeHtml, truncation, MAX_MESSAGE_LENGTH)
@@ -28,7 +28,8 @@ docs/en, docs/pt-br   user guides; keep both languages in sync
 | --------------------------------- | ------------------------------------------------------- |
 | `bun install`                     | Install deps and git hooks (Husky, via `prepare`)       |
 | `bun test` / `bun test <file>`    | Unit tests                                              |
-| `bun run lint` / `bun run format` | Biome check / auto-fix                                  |
+| `bun run lint` / `bun run format` | Biome + markdownlint check / auto-fix                   |
+| `bun run lint:md`                 | markdownlint only (config: `.markdownlint-cli2.jsonc`)  |
 | `bun run typecheck`               | `tsc` (strict, `noUncheckedIndexedAccess`)              |
 | `bun run build`                   | Build `dist/`                                           |
 | `bun run check`                   | lint + typecheck + test + build + publint/attw          |
@@ -65,6 +66,7 @@ docs/en, docs/pt-br   user guides; keep both languages in sync
   scope `security` → Security, scope `deprecate` → Deprecated, breaking → Changed (**BREAKING**). Other types are omitted.
   Optional hand-written notes under `## [Unreleased]` are merged into the next release.
 - `jsr.json`, `CHANGELOG.md` and `.release-please-manifest.json` are excluded from Biome (release tooling rewrites them).
+  `CHANGELOG.md` is also excluded from markdownlint.
 
 ## Validation before finishing a task
 

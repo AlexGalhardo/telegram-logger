@@ -41,7 +41,7 @@ Este guia mostra, passo a passo, como colocar o `@galhardoalex/telegram-logger` 
    - **Grupo:** basta adicionar o bot como membro.
 6. Mande qualquer mensagem no canal e abra no navegador:
 
-   ```
+   ```text
    https://api.telegram.org/bot<SEU_TOKEN>/getUpdates
    ```
 

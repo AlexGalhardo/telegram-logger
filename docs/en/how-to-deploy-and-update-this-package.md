@@ -15,7 +15,7 @@ Releases are automated with [release-please](https://github.com/googleapis/relea
 
 ## How it works, day to day
 
-```
+```text
 you make commits (feat:, fix:...) → push to main
         │
         ▼
@@ -70,8 +70,8 @@ When you want to release, click **Merge**. Within 1 to 2 minutes the new version
 npm view @galhardoalex/telegram-logger version
 ```
 
-- npm: https://www.npmjs.com/package/@galhardoalex/telegram-logger (should show the "Provenance" badge)
-- JSR: https://jsr.io/@galhardoalex/telegram-logger (also check the **Score** tab)
+- npm: <https://www.npmjs.com/package/@galhardoalex/telegram-logger> (should show the "Provenance" badge)
+- JSR: <https://jsr.io/@galhardoalex/telegram-logger> (also check the **Score** tab)
 
 ---
 
@@ -120,7 +120,7 @@ This was already done when the project was created. It's recorded here in case y
 
 ### A. GitHub
 
-1. Repository: https://github.com/AlexGalhardo/telegram-logger
+1. Repository: <https://github.com/AlexGalhardo/telegram-logger>
 2. **Settings → Actions → General → Workflow permissions:**
    - check **Read and write permissions**
    - check **Allow GitHub Actions to create and approve pull requests** (release-please needs this)
@@ -134,8 +134,8 @@ This was already done when the project was created. It's recorded here in case y
 
 ### B. JSR
 
-1. Go to https://jsr.io and sign in with GitHub.
-2. At https://jsr.io/new, create the `@galhardoalex` scope and the `telegram-logger` package.
+1. Go to <https://jsr.io> and sign in with GitHub.
+2. At <https://jsr.io/new>, create the `@galhardoalex` scope and the `telegram-logger` package.
 3. In the package, go to **Settings → GitHub Repository** and link `AlexGalhardo/telegram-logger`. This is what lets GitHub Actions publish via OIDC, without a token.
 4. Still in **Settings**, fill in the description and check the compatible runtimes: Node.js, Deno, Bun, Cloudflare Workers and Browsers. This adds points to the JSR Score.
 5. **If the package already existed and is archived**, unarchive it in **Settings → Archive → Unarchive package**. JSR refuses to publish to an archived package.
@@ -161,7 +161,7 @@ npm publish --access public --provenance=false   # provenance only works inside 
 
 After that:
 
-1. Go to https://www.npmjs.com/package/@galhardoalex/telegram-logger/access, or the package **Settings**.
+1. Go to <https://www.npmjs.com/package/@galhardoalex/telegram-logger/access>, or the package **Settings**.
 2. Under **Trusted Publisher**, choose **GitHub Actions** and fill in:
    - Organization or user: `AlexGalhardo`
    - Repository: `telegram-logger`
