@@ -45,7 +45,7 @@ Este guia mostra, passo a passo, como colocar o `@galhardoalex/telegram-logger` 
    https://api.telegram.org/bot<SEU_TOKEN>/getUpdates
    ```
 
-   Procure `"chat":{"id":-100...}`. Esse número negativo é o **chat id**.
+   Procure `"chat":{"id":-100...}`. Esse número negativo é o **chat id**. Num chat privado com o bot o id é positivo (o seu user id); grupos são negativos sem o `-100`.
 
    > Se aparecer `"result":[]`, mande outra mensagem no canal e recarregue a página. Outra opção é encaminhar uma mensagem do canal para o [@userinfobot](https://t.me/userinfobot).
 
